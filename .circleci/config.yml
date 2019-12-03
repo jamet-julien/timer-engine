@@ -1,0 +1,29 @@
+version: 2
+jobs:
+    build:
+        docker:
+            - image: "circleci/node:latest"
+        steps:
+            - checkout
+
+            - restore_cache:
+                  keys:
+                      - v1-dependencies-{{ checksum "package.json" }}
+                      - v1-dependencies-
+            - run:
+                  name: Install dependencies
+                  command: npm install --no-lockfile
+            - run:
+                  name: Run tests
+                  command: npm run test:single
+            - run:
+                  name: release
+                  command: npm run semantic-release || true
+            - save_cache:
+                  paths:
+                      - node_modules
+                  key: v1-dependencies-{{ checksum "package.json" }}
+            - persist_to_workspace:
+                  root: ~/repo
+                  paths:
+                      - .
