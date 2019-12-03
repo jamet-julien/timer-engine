@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/v/timer-engine.svg?style=flat-square)](https://www.npmjs.com/package/timer-engine)
 [![npm](https://img.shields.io/npm/l/timer-engine.svg?style=flat-square)](https://github.com/jamet-julien/timer-engine/blob/master/LICENSE)
 
-> A basic loop engine for canvas animation
+> Timer make loop with update an d draw states function
 
 ## [Live example]()
 
@@ -56,11 +56,3 @@ timer.start();
 | Type       | Description                              |
 | :--------- | :--------------------------------------- |
 | `function` | Stop the loop, if it was'nt already stop |
-
----
-
-## TODO
-
--   [x] Doc
--   [ ] TU
--   [ ] TS
