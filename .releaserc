@@ -8,7 +8,7 @@
         {"type": "chore", "release": "patch"},
         {"type": "refactor", "release": "patch"}
         ]
-    ],
+    }],
     "@semantic-release/release-notes-generator",
     "@semantic-release/npm"
   ]
