@@ -20,6 +20,9 @@ jobs:
                   name: Run check-coverage
                   command: npm run check-coverage
             - run:
+                  name: Run build
+                  command: npm run build
+            - run:
                   name: Report coverage
                   command: npm run report-coverage
             - run:

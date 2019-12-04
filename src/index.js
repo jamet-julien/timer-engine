@@ -1,8 +1,8 @@
-module.exports = function(frequence = 1 / 60) {
+const Timer = (frequence = 1 / 60) => {
     let lastTick = 0,
         cumulateTime = 0,
         visibilityState = "visible",
-        public = {
+        p = {
             played: false,
             update: function(_) {},
             draw: function(_) {}
@@ -20,31 +20,33 @@ module.exports = function(frequence = 1 / 60) {
         }
 
         while (cumulateTime > frequence) {
-            public.update(frequence);
+            p.update(frequence);
             cumulateTime -= frequence;
         }
 
         lastTick = time;
 
         if (visibilityState == "visible") {
-            public.draw(cumulateTime);
+            p.draw(cumulateTime);
         }
 
-        public.played && enqueue();
+        p.played && enqueue();
     };
 
     const enqueue = function() {
         window.requestAnimationFrame(proxyRun);
     };
 
-    public.stop = function() {
-        public.played = false;
+    p.stop = function() {
+        p.played = false;
     };
 
-    public.start = function() {
-        public.played = true;
+    p.start = function() {
+        p.played = true;
         enqueue();
     };
 
-    return public;
+    return p;
 };
+
+module.exports = Timer;

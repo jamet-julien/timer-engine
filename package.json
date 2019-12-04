@@ -1,13 +1,16 @@
 {
     "name": "timer-engine",
+    "version": "0.0.0-semantical-release",
     "description": "Loop engine to run game with update and draw function",
-    "main": "src/index.js",
+    "main": "dist/index.js",
     "scripts": {
         "commit": "git-cz",
         "check-coverage": "istanbul check-coverage --statements 95 --branches 80 --functions 100 --lines 95",
         "report-coverage": "cat ./coverage/lcov.info | codecov",
         "test": "mocha src/index.test.js -w -r jsdom-global/register",
         "test:single": "istanbul cover -x *.test.js _mocha -- -R spec src/index.test.js -r jsdom-global/register",
+        "prebuild": "rimraf dist",
+        "build": "babel --copy-files --out-dir dist --ignore *.test.js  src",
         "semantic-release": "semantic-release"
     },
     "repository": {
@@ -20,6 +23,10 @@
         "requestAnimationFrame",
         "timer"
     ],
+    "files": [
+        "dist",
+        "README.md"
+    ],
     "author": "Julien Jamet <jamet.julien@gmail.com>",
     "license": "MIT",
     "bugs": {
@@ -27,6 +34,9 @@
     },
     "homepage": "https://github.com/jamet-julien/timer-engine#readme",
     "devDependencies": {
+        "babel-cli": "6.26.0",
+        "babel-preset-es2015": "6.24.1",
+        "babel-preset-stage-2": "6.24.1",
         "chai": "4.2.0",
         "codecov.io": "0.1.6",
         "commitizen": "4.0.3",
@@ -36,6 +46,7 @@
         "jsdom": "15.2.1",
         "jsdom-global": "3.0.2",
         "mocha": "6.2.2",
+        "rimraf": "3.0.0",
         "semantic-release": "^15.13.31",
         "sinon": "7.5.0"
     },
@@ -46,5 +57,11 @@
         "ghooks": {
             "pre-commit": "npm run test:single && npm run check-coverage"
         }
+    },
+    "babel": {
+        "presets": [
+            "es2015",
+            "stage-2"
+        ]
     }
 }
