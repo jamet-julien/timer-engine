@@ -1,6 +1,5 @@
 {
     "name": "timer-engine",
-    "version": "0.0.0-development",
     "description": "Loop engine to run game with update and draw function",
     "main": "src/index.js",
     "scripts": {
