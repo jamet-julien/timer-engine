@@ -29,14 +29,14 @@ describe("Timer-engine", function() {
 
         it("Should draw", function() {
             const timer = Timer();
-            let counter = 0;
+            let highResTimeStamp = 0;
 
             timer.draw = Sinon.spy();
 
             window.requestAnimationFrame = callback => {
-                counter++;
-                if (counter < 3) {
-                    callback(counter);
+                highResTimeStamp++;
+                if (highResTimeStamp < 3) {
+                    callback(highResTimeStamp);
                 }
             };
 
@@ -46,20 +46,56 @@ describe("Timer-engine", function() {
 
         it("Should update", function() {
             const timer = Timer();
-            let counter = 0;
+            let highResTimeStamp = 0;
 
             timer.update = Sinon.spy();
 
             window.requestAnimationFrame = callback => {
-                counter++;
-                if (counter < 3) {
-                    callback(counter * 10);
+                highResTimeStamp++;
+                if (highResTimeStamp < 3) {
+                    callback(highResTimeStamp * 10);
                 }
             };
 
             timer.start();
             Chai.expect(timer.update.called, "update function called").to.be
                 .true;
+        });
+
+        it("Should stop", function() {
+            const timer = Timer();
+            let counterCalled = 0;
+
+            window.requestAnimationFrame = callback => {
+                counterCalled++;
+                if (counterCalled === 3) {
+                    timer.stop();
+                }
+                callback();
+            };
+            timer.start();
+
+            Chai.expect(counterCalled).to.equal(3);
+        });
+
+        it("Should have to do more update than drawing", function() {
+            const timer = Timer();
+            let counterUpdate = 0,
+                counterDraw = 0,
+                highResTimeStamp = 0;
+
+            timer.draw = () => counterDraw++;
+            timer.update = () => counterUpdate++;
+
+            window.requestAnimationFrame = callback => {
+                highResTimeStamp++;
+                if (highResTimeStamp < 3) {
+                    callback(highResTimeStamp * 60);
+                }
+            };
+            timer.start();
+
+            Chai.assert.isAbove(counterUpdate, counterDraw);
         });
     });
 });
