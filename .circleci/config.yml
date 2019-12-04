@@ -17,5 +17,11 @@ jobs:
                   name: Run tests
                   command: npm run test:single
             - run:
+                  name: Run check-coverage
+                  command: npm run check-coverage
+            - run:
+                  name: Report coverage
+                  command: npm run report-coverage
+            - run:
                   name: release
                   command: npm run semantic-release || true

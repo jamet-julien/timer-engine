@@ -4,8 +4,9 @@
     "main": "src/index.js",
     "scripts": {
         "commit": "git-cz",
+        "check-coverage": "istanbul check-coverage --statements 95 --branches 80 --functions 100 --lines 95",
         "test": "mocha src/index.test.js -w -r jsdom-global/register",
-        "test:single": "mocha src/index.test.js -r jsdom-global/register",
+        "test:single": "istanbul cover -x *.test.js _mocha -- -R spec src/index.test.js -r jsdom-global/register",
         "semantic-release": "semantic-release"
     },
     "repository": {
@@ -26,9 +27,11 @@
     "homepage": "https://github.com/jamet-julien/timer-engine#readme",
     "devDependencies": {
         "chai": "4.2.0",
+        "codecov.io": "0.1.6",
         "commitizen": "4.0.3",
         "cz-conventional-changelog": "3.0.2",
         "ghooks": "2.0.4",
+        "istanbul": "0.4.5",
         "jsdom": "15.2.1",
         "jsdom-global": "3.0.2",
         "mocha": "6.2.2",
@@ -40,7 +43,7 @@
     },
     "config": {
         "ghooks": {
-            "pre-commit": "npm run test:single"
+            "pre-commit": "npm run test:single && npm run check-coverage"
         }
     }
 }

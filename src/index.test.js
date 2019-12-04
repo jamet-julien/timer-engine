@@ -71,7 +71,7 @@ describe("Timer-engine", function() {
                 if (counterCalled === 3) {
                     timer.stop();
                 }
-                callback();
+                callback(100);
             };
             timer.start();
 
