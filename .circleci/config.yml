@@ -19,11 +19,3 @@ jobs:
             - run:
                   name: release
                   command: npm run semantic-release || true
-            - save_cache:
-                  paths:
-                      - node_modules
-                  key: v1-dependencies-{{ checksum "package.json" }}
-            - persist_to_workspace:
-                  root: ~/repo
-                  paths:
-                      - .
