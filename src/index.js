@@ -1,10 +1,12 @@
 module.exports = function(frequence = 1 / 60) {
     let lastTick = 0,
         cumulateTime = 0,
-        play = false,
         visibilityState = "visible",
-        draw = function(_) {},
-        update = function(_) {};
+        public = {
+            played: false,
+            update: function(_) {},
+            draw: function(_) {}
+        };
 
     document.addEventListener("visibilitychange", () => {
         visibilityState = document.visibilityState;
@@ -18,36 +20,31 @@ module.exports = function(frequence = 1 / 60) {
         }
 
         while (cumulateTime > frequence) {
-            update(frequence);
+            public.update(frequence);
             cumulateTime -= frequence;
         }
 
         lastTick = time;
 
         if (visibilityState == "visible") {
-            draw(cumulateTime);
+            public.draw(cumulateTime);
         }
 
-        play && enqueue();
-    };
-
-    const stop = function() {
-        play = false;
+        public.played && enqueue();
     };
 
     const enqueue = function() {
-        requestAnimationFrame(proxyRun);
+        window.requestAnimationFrame(proxyRun);
     };
 
-    const start = function() {
-        play = true;
+    public.stop = function() {
+        public.played = false;
+    };
+
+    public.start = function() {
+        public.played = true;
         enqueue();
     };
 
-    return {
-        stop,
-        start,
-        update,
-        draw
-    };
+    return public;
 };
