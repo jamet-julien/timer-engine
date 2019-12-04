@@ -1,6 +1,7 @@
 # TIMER-ENGINE
 
 [![CircleCI Status](https://circleci.com/gh/jamet-julien/timer-engine.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/jamet-julien/timer-engine)
+![Codecov](https://img.shields.io/codecov/c/github/jamet-julien/timer-engine)
 [![npm](https://img.shields.io/npm/dt/timer-engine.svg?style=flat-square)](https://www.npmjs.com/package/timer-engine)
 [![npm](https://img.shields.io/npm/v/timer-engine.svg?style=flat-square)](https://www.npmjs.com/package/timer-engine)
 [![npm](https://img.shields.io/npm/l/timer-engine.svg?style=flat-square)](https://github.com/jamet-julien/timer-engine/blob/master/LICENSE)
