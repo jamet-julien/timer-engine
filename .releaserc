@@ -1,5 +1,4 @@
 {
-  "branch": "next",
   "repositoryUrl": "https://github.com/jamet-julien/timer-engine.git",
   "plugins": [
     "@semantic-release/commit-analyzer",
