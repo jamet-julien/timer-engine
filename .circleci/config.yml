@@ -21,8 +21,6 @@ jobs:
             - run:
                   name: Run build
                   command: npm run build
-            - codecov/upload:
-                  file: ../coverage/lcov.info
             - run:
                   name: release
                   command: npm run semantic-release || true
