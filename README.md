@@ -41,13 +41,15 @@ timer.start();
 
 ### Sample SNAKE GAME<a id="sample"></a>
 
-> index.html
+> simple game to test Timer-engine plugin
+
+index.html file
 
 ```html
 <canvas width="320" height="240" style="border:red 1px solid"></canvas>
 ```
 
-> script.js
+script.js file
 
 ```js
 var canvas = document.body.children[0];
@@ -70,14 +72,14 @@ action = {
 direction = [0, -1];
 apple = [5, 5];
 
-timer = Timer(1 / 2);
+timer = Timer(1 / 10);
 
 timer.update = () => {
     head = snake[0];
     snake.unshift([head[0] + direction[0], head[1] + direction[1]]);
 
     if (apple[0] === head[0] && apple[1] === head[1]) {
-        apple = [(Math.random() * 10) | 0, (Math.random() * 10) | 0];
+        apple = [(Math.random() * 32) | 0, (Math.random() * 24) | 0];
     } else {
         snake.pop();
     }
