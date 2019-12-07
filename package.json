@@ -7,9 +7,10 @@
         "commit": "git-cz",
         "test": "jest",
         "test:watch": "jest --watch",
+        "report-coverage": "cat ./coverage/lcov.info | codecov",
         "prebuild": "rimraf dist",
         "build": "npm-run-all --parallel build:*",
-        "build:main": "babel --copy-files --out-dir dist --ignore *.test.js  src",
+        "build:main": "babel --copy-files --out-dir dist src/index.js",
         "build:umd": "webpack --output-filename index.umd.js",
         "semantic-release": "semantic-release"
     },
@@ -54,7 +55,7 @@
             "path": "node_modules/cz-conventional-changelog"
         },
         "ghooks": {
-            "pre-commit": "npm run test"
+            "pre-commit": "npm t"
         }
     },
     "jest": {
