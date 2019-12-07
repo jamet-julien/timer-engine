@@ -1,101 +1,97 @@
-const Chai = require("chai");
-const Sinon = require("sinon");
-const Timer = require("./index");
+import Timer from "./index";
 
-describe("Timer-engine", function() {
-    describe("Make a instance", function() {
-        it("Should be function", function() {
-            Chai.assert.isFunction(Timer);
-        });
-
-        it("Should create object", function() {
-            Chai.assert.isObject(Timer());
-        });
-
-        it("Should contain importants functions", function() {
-            const methodRequired = ["stop", "start", "update", "draw"];
-            const methodInstance = Object.keys(Timer());
-            Chai.expect(methodInstance).to.include.members(methodRequired);
-        });
+describe("Start", () => {
+    it("First import right", () => {
+        expect(typeof Timer).toBe("function");
     });
 
-    describe("Run instance", function() {
-        it("Should start", function() {
-            const timer = Timer();
-            window.requestAnimationFrame = Sinon.spy();
-            timer.start();
-            Chai.expect(window.requestAnimationFrame.called).to.be.true;
-        });
+    it("Required functions", () => {
+        const instance = Timer();
+        expect(instance).toHaveProperty("update");
+        expect(instance).toHaveProperty("draw");
+        expect(instance).toHaveProperty("stop");
+        expect(instance).toHaveProperty("start");
+    });
 
-        it("Should draw", function() {
-            const timer = Timer();
-            let highResTimeStamp = 0;
+    it("Launched", () => {
+        const instance = Timer();
+        window.requestAnimationFrame = jest.fn();
+        instance.start();
+        expect(window.requestAnimationFrame.mock.calls.length).toBe(1);
+    });
 
-            timer.draw = Sinon.spy();
+    it("Launched cancel", () => {
+        const instance = Timer();
+        instance.start();
+        instance.stop();
+        expect(instance.played).toBe(false);
+    });
 
-            window.requestAnimationFrame = callback => {
-                highResTimeStamp++;
-                if (highResTimeStamp < 3) {
-                    callback(highResTimeStamp);
-                }
-            };
+    it("Draw called", () => {
+        let highResTimeStamp = 0;
+        const instance = Timer();
 
-            timer.start();
-            Chai.expect(timer.draw.called, "draw function called").to.be.true;
-        });
+        window.requestAnimationFrame = callback => {
+            highResTimeStamp++;
+            if (highResTimeStamp <= 3) {
+                callback(highResTimeStamp);
+            }
+        };
 
-        it("Should update", function() {
-            const timer = Timer();
-            let highResTimeStamp = 0;
+        instance.draw = jest.fn();
+        instance.start();
+        expect(instance.draw.mock.calls.length).toBe(3);
+    });
 
-            timer.update = Sinon.spy();
+    it("Update don't called", () => {
+        let highResTimeStamp = 0;
+        const instance = Timer();
 
-            window.requestAnimationFrame = callback => {
-                highResTimeStamp++;
-                if (highResTimeStamp < 3) {
-                    callback(highResTimeStamp * 10);
-                }
-            };
+        window.requestAnimationFrame = callback => {
+            highResTimeStamp++;
+            if (highResTimeStamp <= 3) {
+                callback(highResTimeStamp);
+            }
+        };
 
-            timer.start();
-            Chai.expect(timer.update.called, "update function called").to.be
-                .true;
-        });
+        instance.update = jest.fn();
+        instance.start();
+        expect(instance.update.mock.calls.length).toBe(0);
+    });
 
-        it("Should stop", function() {
-            const timer = Timer();
-            let counterCalled = 0;
+    it("Update called", () => {
+        let highResTimeStamp = 0;
+        const instance = Timer();
 
-            window.requestAnimationFrame = callback => {
-                counterCalled++;
-                if (counterCalled === 3) {
-                    timer.stop();
-                }
-                callback(100);
-            };
-            timer.start();
+        window.requestAnimationFrame = callback => {
+            highResTimeStamp++;
+            if (highResTimeStamp <= 3) {
+                callback(highResTimeStamp * 10);
+            }
+        };
 
-            Chai.expect(counterCalled).to.equal(3);
-        });
+        instance.update = jest.fn();
+        instance.start();
+        expect(instance.update.mock.calls.length).toBe(1);
+    });
 
-        it("Should have to do more update than drawing", function() {
-            const timer = Timer();
-            let counterUpdate = 0,
-                counterDraw = 0,
-                highResTimeStamp = 0;
+    it("Update called more than draw", () => {
+        let counterCalled = 0;
+        const instance = Timer();
 
-            timer.draw = () => counterDraw++;
-            timer.update = () => counterUpdate++;
+        window.requestAnimationFrame = callback => {
+            counterCalled++;
+            if (counterCalled === 3) {
+                instance.stop();
+            }
+            callback(10000);
+        };
 
-            window.requestAnimationFrame = callback => {
-                highResTimeStamp++;
-                if (highResTimeStamp < 3) {
-                    callback(highResTimeStamp * 60);
-                }
-            };
-            timer.start();
-
-            Chai.assert.isAbove(counterUpdate, counterDraw);
-        });
+        instance.draw = jest.fn();
+        instance.update = jest.fn();
+        instance.start();
+        expect(instance.update.mock.calls.length).toBeGreaterThan(
+            instance.draw.mock.calls.length
+        );
     });
 });

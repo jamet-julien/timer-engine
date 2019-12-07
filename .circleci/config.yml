@@ -15,10 +15,7 @@ jobs:
                   command: npm install --no-lockfile
             - run:
                   name: Run tests
-                  command: npm run test:single
-            - run:
-                  name: Run check-coverage
-                  command: npm run check-coverage
+                  command: npm t
             - run:
                   name: Run build
                   command: npm run build
