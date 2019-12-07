@@ -49,4 +49,4 @@ const Timer = (frequence = 1 / 60) => {
     return p;
 };
 
-module.exports = Timer;
+export default Timer;
