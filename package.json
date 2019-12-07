@@ -8,7 +8,9 @@
         "test": "jest",
         "test:watch": "jest --watch",
         "prebuild": "rimraf dist",
-        "build": "babel --copy-files --out-dir dist --ignore *.test.js  src",
+        "build": "npm-run-all --parallel build:*",
+        "build:main": "babel --copy-files --out-dir dist --ignore *.test.js  src",
+        "build:umd": "webpack --output-filename index.umd.js",
         "semantic-release": "semantic-release"
     },
     "repository": {
@@ -36,12 +38,16 @@
         "@babel/core": "7.7.4",
         "@babel/preset-env": "7.7.4",
         "babel-jest": "24.9.0",
+        "babel-loader": "8.0.6",
         "commitizen": "4.0.3",
         "cz-conventional-changelog": "3.0.2",
         "ghooks": "2.0.4",
         "jest": "24.9.0",
+        "npm-run-all": "4.1.5",
         "rimraf": "3.0.0",
-        "semantic-release": "15.13.31"
+        "semantic-release": "15.13.31",
+        "webpack": "4.41.2",
+        "webpack-cli": "3.3.10"
     },
     "config": {
         "commitizen": {
