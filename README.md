@@ -44,7 +44,7 @@ timer.start();
 > index.html
 
 ```html
-<canvas width="320" height="240"></canvas>
+<canvas width="320" height="240" style="border:red 1px solid"></canvas>
 ```
 
 > script.js
@@ -72,25 +72,23 @@ apple = [5, 5];
 
 timer = Timer(1 / 2);
 
-window.onkeydown = ({ key }) => {
-    direction = action[key] || direction;
-};
-
-// SET UPDATE FUNCTION TO TIMER
 timer.update = () => {
     head = snake[0];
     snake.unshift([head[0] + direction[0], head[1] + direction[1]]);
 
-    if (apple[0] === snake[0] && apple[1] === snake[1]) {
+    if (apple[0] === head[0] && apple[1] === head[1]) {
         apple = [(Math.random() * 10) | 0, (Math.random() * 10) | 0];
     } else {
         snake.pop();
     }
 };
 
-// SET DRAW FUNCTION TO TIMER
 timer.draw = () => {
     context.clearRect(0, 0, 100, 100);
+    context.fillStyle = "red";
+    context.fillRect(apple[0], apple[1], 1, 1);
+
+    context.fillStyle = "black";
     snake.forEach(([x, y]) => {
         context.fillRect(x, y, 1, 1);
     });
