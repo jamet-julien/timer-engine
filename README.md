@@ -63,18 +63,18 @@ snake = [
 action = {
     ArrowUp: [0, -1],
     ArrowDown: [0, 1],
-    ArrowLeft: [1, 0],
-    ArrowRight: [-1, 0]
+    ArrowLeft: [-1, 0],
+    ArrowRight: [1, 0]
 };
 
 direction = [0, -1];
 apple = [5, 5];
 
-timer = Timer();
+timer = Timer(1 / 2);
 
-document.addEventListener("keydown", ({ key }) => {
+window.onkeydown = ({ key }) => {
     direction = action[key] || direction;
-});
+};
 
 // SET UPDATE FUNCTION TO TIMER
 timer.update = () => {
@@ -90,6 +90,7 @@ timer.update = () => {
 
 // SET DRAW FUNCTION TO TIMER
 timer.draw = () => {
+    context.clearRect(0, 0, 100, 100);
     snake.forEach(([x, y]) => {
         context.fillRect(x, y, 1, 1);
     });
