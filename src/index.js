@@ -50,3 +50,4 @@ const Timer = (frequence = 1 / 60) => {
 };
 
 export default Timer;
+export { Timer };
