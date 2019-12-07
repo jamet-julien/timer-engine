@@ -7,7 +7,7 @@
         "commit": "git-cz",
         "test": "jest",
         "test:watch": "jest --watch",
-        "report-coverage": "./node_modules/.bin/codecov --token=$CODECOV_TOKEN",
+        "report-coverage": "codecov --token=$CODECOV_TOKEN",
         "prebuild": "rimraf dist",
         "build": "npm-run-all --parallel build:*",
         "build:main": "babel --copy-files --out-dir dist src/index.js",

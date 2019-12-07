@@ -8,10 +8,11 @@
 
 > Timer make loop with "update" and "draw" states function
 
-## [Live example]()
+## [Live example](https://codepen.io/jamet-julien/pen/dyPYRgz)
 
 -   [Install](#install)
 -   [Importing](#importing)
+-   [sample "SNAKE GAME"](#sample)
 
 ## Install <a id="install"></a>
 
@@ -38,6 +39,67 @@ timer.start();
 
 ---
 
+### Sample SNAKE GAME<a id="sample"></a>
+
+> index.html
+
+```html
+<canvas width="320" height="240"></canvas>
+```
+
+> script.js
+
+```js
+var canvas = document.body.children[0];
+var context = canvas.getContext("2d");
+context.scale(10, 10);
+snake = [
+    [0, 1],
+    [0, 2],
+    [1, 2],
+    [1, 3]
+];
+
+action = {
+    ArrowUp: [0, -1],
+    ArrowDown: [0, 1],
+    ArrowLeft: [1, 0],
+    ArrowRight: [-1, 0]
+};
+
+direction = [0, -1];
+apple = [5, 5];
+
+timer = Timer();
+
+document.addEventListener("keydown", ({ key }) => {
+    direction = action[key] || direction;
+});
+
+// SET UPDATE FUNCTION TO TIMER
+timer.update = () => {
+    head = snake[0];
+    snake.unshift([head[0] + direction[0], head[1] + direction[1]]);
+
+    if (apple[0] === snake[0] && apple[1] === snake[1]) {
+        apple = [(Math.random() * 10) | 0, (Math.random() * 10) | 0];
+    } else {
+        snake.pop();
+    }
+};
+
+// SET DRAW FUNCTION TO TIMER
+timer.draw = () => {
+    snake.forEach(([x, y]) => {
+        context.fillRect(x, y, 1, 1);
+    });
+};
+
+timer.start();
+```
+
+---
+
 ## Options <a id="options"></a>
 
 ---
@@ -56,4 +118,4 @@ timer.start();
 
 | Type       | Description                              |
 | :--------- | :--------------------------------------- |
-| `function` | Stop the loop, if it was'nt already stop |
+| `function` | Stop the loop, if it wasn't already stop |
