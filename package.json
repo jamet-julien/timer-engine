@@ -5,7 +5,6 @@
     "main": "dist/index.js",
     "scripts": {
         "commit": "git-cz",
-        "report-coverage": "cat ./coverage/lcov.info | codecov",
         "test": "jest",
         "test:watch": "jest --watch",
         "prebuild": "rimraf dist",
@@ -37,7 +36,6 @@
         "@babel/core": "7.7.4",
         "@babel/preset-env": "7.7.4",
         "babel-jest": "24.9.0",
-        "codecov": "3.6.1",
         "commitizen": "4.0.3",
         "cz-conventional-changelog": "3.0.2",
         "ghooks": "2.0.4",
