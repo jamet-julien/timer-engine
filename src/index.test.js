@@ -94,4 +94,24 @@ describe("Start", () => {
             instance.draw.mock.calls.length
         );
     });
+
+    it("Set frequence", () => {
+        let counterCalled = 0;
+        const instance = Timer(1 / 2);
+
+        window.requestAnimationFrame = callback => {
+            counterCalled++;
+            if (counterCalled == 1) {
+                callback(1000);
+            } else if (counterCalled == 2) {
+                instance.setFrequence(1 / 3);
+                callback(1000);
+            }
+        };
+
+        instance.update = jest.fn();
+        instance.start();
+        expect(instance.update.mock.calls[0][0]).toBe(1 / 2);
+        expect(instance.update.mock.calls[1][0]).toBe(1 / 3);
+    });
 });

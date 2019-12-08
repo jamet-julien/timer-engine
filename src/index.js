@@ -37,6 +37,10 @@ const Timer = (frequence = 1 / 60) => {
         window.requestAnimationFrame(proxyRun);
     };
 
+    p.setFrequence = function(fre) {
+        frequence = fre;
+    };
+
     p.stop = function() {
         p.played = false;
     };

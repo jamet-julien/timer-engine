@@ -129,3 +129,15 @@ document.addEventListener("click", () => {
 | Type       | Description                              |
 | :--------- | :--------------------------------------- |
 | `function` | Stop the loop, if it wasn't already stop |
+
+---
+
+### .setFrequence(num) <a id="setFrequence"></a>
+
+| Type       | Description            |
+| :--------- | :--------------------- |
+| `function` | set new frequence loop |
+
+| argument | type     | Description            |
+| :------- | :------- | :--------------------- |
+| `num`    | `number` | new value of frequence |
