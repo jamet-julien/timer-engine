@@ -55,12 +55,7 @@ script.js file
 var canvas = document.body.children[0];
 var context = canvas.getContext("2d");
 context.scale(10, 10);
-snake = [
-    [0, 1],
-    [0, 2],
-    [1, 2],
-    [1, 3]
-];
+snake = [[16, 1]];
 
 action = {
     ArrowUp: [0, -1],
@@ -69,11 +64,18 @@ action = {
     ArrowRight: [1, 0]
 };
 
-direction = [0, -1];
+direction = [0, 1];
 apple = [5, 5];
 
-timer = Timer(1 / 10);
+// intance and choose frequence
+timer = Timer.default(1 / 5);
 
+// use keyboard to move snake
+window.onkeydown = ({ key }) => {
+    direction = action[key] || direction;
+};
+
+// set Update function
 timer.update = () => {
     head = snake[0];
     snake.unshift([head[0] + direction[0], head[1] + direction[1]]);
@@ -85,6 +87,7 @@ timer.update = () => {
     }
 };
 
+// set Draw function
 timer.draw = () => {
     context.clearRect(0, 0, 100, 100);
     context.fillStyle = "red";
@@ -96,7 +99,13 @@ timer.draw = () => {
     });
 };
 
-timer.start();
+//first draw
+timer.draw();
+
+//click to start game
+document.addEventListener("click", () => {
+    timer.start();
+});
 ```
 
 ---
