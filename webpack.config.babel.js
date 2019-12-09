@@ -10,7 +10,6 @@ module.exports = {
         library: "Timer"
     },
     devtool: "source-map",
-    mode: "production",
     module: {
         rules: [
             {
@@ -18,7 +17,8 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["@babel/preset-env"]
+                        presets: ["@babel/preset-env"],
+                        plugins: ["add-module-exports"]
                     }
                 },
                 include
