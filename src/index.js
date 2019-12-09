@@ -1,4 +1,4 @@
-const Timer = (frequence = 1 / 60) => {
+export default (frequence = 1 / 60) => {
     let lastTick = 0,
         cumulateTime = 0,
         visibilityState = "visible",
@@ -52,6 +52,3 @@ const Timer = (frequence = 1 / 60) => {
 
     return p;
 };
-
-export default Timer;
-export { Timer };
