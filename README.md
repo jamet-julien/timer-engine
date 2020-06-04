@@ -5,6 +5,7 @@
 [![npm](https://img.shields.io/npm/dt/timer-engine.svg?style=flat-square)](https://www.npmjs.com/package/timer-engine)
 [![npm](https://img.shields.io/npm/v/timer-engine.svg?style=flat-square)](https://www.npmjs.com/package/timer-engine)
 [![npm](https://img.shields.io/npm/l/timer-engine.svg?style=flat-square)](https://github.com/jamet-julien/timer-engine/blob/master/LICENSE)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 > Timer make loop with "update" and "draw" states function
 
@@ -39,7 +40,7 @@ timer.start();
 
 ---
 
-### Sample SNAKE GAME<a id="sample"></a>
+### Sample SNAKE GAME <a id="sample"></a>
 
 > simple game to test Timer-engine plugin
 
@@ -67,7 +68,7 @@ action = {
 direction = [0, 1];
 apple = [5, 5];
 
-// intance and choose frequence
+// instance and choose frequence ( use CDN so need `default` caller)
 timer = Timer.default(1 / 5);
 
 // use keyboard to move snake
@@ -110,33 +111,27 @@ document.addEventListener("click", () => {
 
 ---
 
-## Options <a id="options"></a>
-
----
-
 ## Methods <a id="methods"></a>
 
 ### .start() <a id="start"></a>
 
-| Type       | Description                                |
-| :--------- | :----------------------------------------- |
-| `function` | Start the loop, if it wasn't already start |
+#### Description
 
----
+Start the loop, if it wasn't already start
 
 ### .stop() <a id="stop"></a>
 
-| Type       | Description                              |
-| :--------- | :--------------------------------------- |
-| `function` | Stop the loop, if it wasn't already stop |
+#### Description
 
----
+Stop the loop, if it wasn't already stop
 
 ### .setFrequence(num) <a id="setFrequence"></a>
 
-| Type       | Description            |
-| :--------- | :--------------------- |
-| `function` | set new frequence loop |
+#### Description
+
+set new frequence loop
+
+#### Arguments
 
 | argument | type     | Description            |
 | :------- | :------- | :--------------------- |
