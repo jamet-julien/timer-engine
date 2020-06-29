@@ -113,6 +113,20 @@ document.addEventListener("click", () => {
 
 ## Methods <a id="methods"></a>
 
+### .draw(`cumultateValue`) <a id="draw"></a>
+
+#### Description
+
+launch on requestanimation frame when window is actived.
+`cumultateValue` is time on milisecond since start
+
+### .update(`frequence`) <a id="update"></a>
+
+#### Description
+
+launch on requestanimation frame when window is actived.
+`frequence` is time on milisecond since last update, therefore it has no lag during the calculation.
+
 ### .start() <a id="start"></a>
 
 #### Description

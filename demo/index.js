@@ -24,7 +24,13 @@ timer = Timer.default(1 / frequence);
 
 timer.update = () => {
     head = snake[0];
-    snake.unshift([head[0] + direction[0], head[1] + direction[1]]);
+
+    const posX =
+        head[0] + direction[0] >= 0 ? (head[0] + direction[0]) % 32 : 32;
+    const posY =
+        head[1] + direction[1] >= 0 ? (head[1] + direction[1]) % 24 : 24;
+
+    snake.unshift([posX, posY]);
 
     if (apple[0] === head[0] && apple[1] === head[1]) {
         apple = [(Math.random() * 32) | 0, (Math.random() * 24) | 0];

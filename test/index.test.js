@@ -1,4 +1,4 @@
-import Timer from "./index";
+import Timer from "../src/index";
 
 describe("Start", () => {
     it("First import right", () => {
@@ -31,7 +31,7 @@ describe("Start", () => {
         let highResTimeStamp = 0;
         const instance = Timer();
 
-        window.requestAnimationFrame = callback => {
+        window.requestAnimationFrame = (callback) => {
             highResTimeStamp++;
             if (highResTimeStamp <= 3) {
                 callback(highResTimeStamp);
@@ -47,7 +47,7 @@ describe("Start", () => {
         let highResTimeStamp = 0;
         const instance = Timer();
 
-        window.requestAnimationFrame = callback => {
+        window.requestAnimationFrame = (callback) => {
             highResTimeStamp++;
             if (highResTimeStamp <= 3) {
                 callback(highResTimeStamp);
@@ -63,7 +63,7 @@ describe("Start", () => {
         let highResTimeStamp = 0;
         const instance = Timer();
 
-        window.requestAnimationFrame = callback => {
+        window.requestAnimationFrame = (callback) => {
             highResTimeStamp++;
             if (highResTimeStamp <= 3) {
                 callback(highResTimeStamp * 10);
@@ -79,7 +79,7 @@ describe("Start", () => {
         let counterCalled = 0;
         const instance = Timer();
 
-        window.requestAnimationFrame = callback => {
+        window.requestAnimationFrame = (callback) => {
             counterCalled++;
             if (counterCalled === 3) {
                 instance.stop();
@@ -99,7 +99,7 @@ describe("Start", () => {
         let counterCalled = 0;
         const instance = Timer(1 / 2);
 
-        window.requestAnimationFrame = callback => {
+        window.requestAnimationFrame = (callback) => {
             counterCalled++;
             if (counterCalled == 1) {
                 callback(1000);
