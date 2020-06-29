@@ -9,6 +9,7 @@
         "test:watch": "jest --watch",
         "report-coverage": "codecov --token=$CODECOV_TOKEN",
         "prebuild": "rimraf dist",
+        "dev": "npx parcel demo/index.html",
         "build": "npm-run-all --parallel build:*",
         "build:main": "babel --copy-files --out-dir dist src/index.js",
         "build:umd": "webpack --output-filename index.umd.js -d",
@@ -49,6 +50,7 @@
         "npm-run-all": "4.1.5",
         "rimraf": "3.0.0",
         "semantic-release": "15.13.31",
+        "parcel-bundler": "1.12.4",
         "webpack": "4.41.2",
         "webpack-cli": "3.3.10"
     },

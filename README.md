@@ -9,7 +9,7 @@
 
 > Timer make loop with "update" and "draw" states function
 
-## [Live example](https://codepen.io/jamet-julien/pen/dyPYRgz)
+## [Live example](https://codepen.io/jamet-julien/full/OJMxjRa)
 
 -   [Install](#install)
 -   [Importing](#importing)
@@ -29,10 +29,10 @@ or
 import Timer from "timer-engine";
 
 const timer = Timer();
-timer.update = frequenceValue => {
+timer.update = (frequenceValue) => {
     /*make something*/
 };
-timer.draw = cumultateValue => {
+timer.draw = (cumultateValue) => {
     /*make something*/
 };
 timer.start();
